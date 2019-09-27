@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- 방법 1, Setter Insection --><!--
+	<bean id="showdata" class="pack.model.ShowData" />
+	<bean id="myProcess" class="pack.controller.MyProcess"> 생성자가 없기때문에 /로 막아도 되지만, setter를 만족시키지 못한다.
+		<property name="age" value="26" />
+		<property name="name" value="JA" />
+		<property name="showData" ref="showdata" />
+	</bean>   -->
+	
+	<!-- 방법2 --><!--
+	<bean id="myProcess" class="pack.controller.MyProcess">
+		<property name="age">
+			<value>26</value>
+		</property>
+		<property name="name">
+			<value>JA</value>
+		</property>
+		<property name="showData">
+			<bean class="pack.model.ShowData"></bean>
+		</property>
+	</bean> -->
+	
+	<!-- 방법3 --> 
+	<bean id="myProcess" class="pack.controller.MyProcess" p:age="22" p:name="JA" p:showData-ref="sData"/>
+	<bean id="sData" class="pack.model.ShowData" />
+</beans>
